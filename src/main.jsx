@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // Import page
 import HomePage from './pages/HomePage.jsx'
 import ProjectPage from './pages/ProjectPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 // Import components
 import NavBar from './components/NavBar.jsx'
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
     element: <NavBar />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/project', element: <ProjectPage /> },
+      { path: '/login', element: <LoginPage /> },
+      { path: '/project/:id', element: <ProjectPage /> },
     ],
   },
 ]);
