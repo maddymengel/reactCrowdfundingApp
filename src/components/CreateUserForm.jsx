@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import postLogin from "../api/post-login.js";
-import useAuth from "../hooks/use-auth.js";
+import postUsers from "../api/post-users.js";
+// import useAuth from "../hooks/use-auth.js";
 
-function LoginForm() {
+function CreateUserForm() {
     const navigate = useNavigate();
-    const {auth, setAuth} = useAuth();
+    // const {auth, setAuth} = useAuth();
 
     const [credentials, setCredentials] = useState ({
         username: "",
@@ -24,14 +24,14 @@ function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (credentials.username && credentials.password) {
-            postLogin(
+            postUsers(
                 credentials.username,
                 credentials.password
             ).then((response) => {
                 window.localStorage.setItem("token", response.token);
-                setAuth({
-                    token: response.token,
-                });
+                // setAuth({
+                //     token: response.token,
+                // });
                 navigate("/");
             });
         }
@@ -57,11 +57,11 @@ function LoginForm() {
                     onChange={handleChange}
                 />
             </div>
-            <button type="submit" onClick={handleSubmit}>Login</button>
+            <button type="submit" onClick={handleSubmit}>Register</button>
             {/* <button type="submit" onClick={handleSubmit}>Logout</button> */}
-            <a href="/users">Register</a>
+            <a href="/login">Login</a>
         </form>
     );
 }
 
-export default LoginForm;
+export default CreateUserForm;

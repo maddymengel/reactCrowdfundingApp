@@ -1,9 +1,9 @@
-async function postPledge(supporter, comment, amount, project) {
+async function postProject(title, description, goal, image) {
     // is this getting the right date?
     let date = new Date().toJSON();
-    const url = `${import.meta.env.VITE_API_URL}/pledges/`;
+    const url = `${import.meta.env.VITE_API_URL}/projects/`;
     const token = window.localStorage.getItem("token");
-    console.log("i am post pledge")
+    console.log("i am post project")
 
     const response = await fetch(url, {
         method: "POST", // We neeed to tell the server that we are sending JSON data so we set the COntent Type header to application/json
@@ -13,15 +13,14 @@ async function postPledge(supporter, comment, amount, project) {
             "Authorization": `Token ${token}`,
         },
         body: JSON.stringify({
-            "supporter": supporter,
-            "comment": comment,
-            "amount": amount,
-            "project": project,
-            // "image": image,
+            "title": title,
+            "description": description,
+            "goal": goal,
+            "image": image,
             // user does not control - we define directly here and send straight to backend
-            // "is_open": true,
-            // // user does not control
-            // "date_created": date,
+            "is_open": true,
+            // user does not control
+            "date_created": date,
         }),
     });
 
@@ -39,4 +38,4 @@ async function postPledge(supporter, comment, amount, project) {
     return await response.json();
 }
 
-export default postPledge;
+export default postProject;
